@@ -100,10 +100,16 @@ Hyperparameters should be passed as a dictionary when creating your experiment:
 params = {
     "lr": 0.001,
     "batch_size": 128,
-    "num_epochs": 10
+    "_eval_param": 10
 }
 exp = MyExperiment(params)
 ```
+
+In the above example, the experiment parameter specification string will be "lr_0d001_batch_size_128". This string is automatically logged and used to uniquely identify a specific hyperparameter configuration of an experiment. It also serves as a identifier for retrieving saved results and logs.
+
+Note that the key '"_eval_param": 10' is not included in the specification string because its name starts with an underscore. If you don’t want a particular hyperparameter to be part of the experiment’s identifier, simply prefix its name with "_".
+
+This is especially useful for parameters that don’t affect the model’s training process but might influence evaluation or post-processing. In this way, changing such a parameter won’t trigger a re-run of the experiment (when repeat_if_log_is_saved=False).
 
 ---
 

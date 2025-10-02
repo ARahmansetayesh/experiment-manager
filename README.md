@@ -1,6 +1,8 @@
 # experiment-manager
 This repository provides an abstract class for managing, saving, and logging research-oriented experiments.
 
+This abstract class acts as a lightweight experiment manager that automatically tracks, logs, and saves each experiment according to its title and hyperparameter specification. By checking whether logs and results already exist, it helps researchers skip re-running completed experiments, saving both time and computational resources while maintaining reproducibility.
+
 # 🧪 experiment-manager
 
 This repository provides an **abstract base class** for managing, saving, and logging **research-oriented experiments**.

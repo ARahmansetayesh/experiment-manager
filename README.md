@@ -107,7 +107,7 @@ exp = MyExperiment(params)
 
 In the above example, the experiment parameter specification string will be "lr_0d001_batch_size_128". This string is automatically logged and used to uniquely identify a specific hyperparameter configuration of an experiment. It also serves as a identifier for retrieving saved results and logs.
 
-Note that the key '"_eval_param": 10' is not included in the specification string because its name starts with an underscore. If you don’t want a particular hyperparameter to be part of the experiment’s identifier, simply prefix its name with "_".
+Note that the key '_eval_param' is not included in the specification string because its name starts with an underscore. If you don’t want a particular hyperparameter to be part of the experiment’s identifier, simply prefix its name with "_".
 
 This is especially useful for parameters that don’t affect the model’s training process but might influence evaluation or post-processing. In this way, changing such a parameter won’t trigger a re-run of the experiment (when repeat_if_log_is_saved=False).
 

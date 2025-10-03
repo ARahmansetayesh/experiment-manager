@@ -1,7 +1,10 @@
 # experiment-manager
-This repository provides an abstract class for managing, saving, and logging research-oriented experiments.
+This repository provides an abstract base class for managing, saving, and logging research-oriented experiments.
 
-This abstract class acts as a lightweight experiment manager that automatically tracks, logs, and saves each experiment according to its title and hyperparameter specification. By checking whether logs and results already exist, it helps researchers skip re-running completed experiments, saving both time and computational resources while maintaining reproducibility.
+It serves as a lightweight experiment manager that automatically tracks, logs, and saves each experiment based on its title, id, and hyperparameter configuration. By checking whether logs and results already exist, it helps researchers avoid re-running completed experiments, saving both time and computational resources while maintaining full reproducibility.
+
+This framework is intended as a minimal and easy-to-use alternative to libraries like Sherpa, Optuna, or Ray Tune. While it offers fewer advanced features, it provides the essential functionality needed for simple and reproducible grid-search–style experimentation.
+
 
 # 🧪 experiment-manager
 
@@ -36,17 +39,10 @@ self.final_experiment_log      # str
 self.final_experiment_data     # dict
 ```
 
----
 
 ### 🧭 Member Attributes That Should be Set by `run()`
 
-#### `self.final_experiment_log`
-A string describing the outcome or key observations of your experiment.  
-It will be **automatically saved** in the `experiment_log` folder.
 
-#### `self.final_experiment_data`
-A dictionary containing the results, metrics, or artifacts of your experiment.  
-It will be **automatically saved** (via pickle) in the `experiment_data` folder.
 
 #### `self.final_experiment_quality`
 An integer representing the **quality level** of your experiment.  
@@ -63,6 +59,24 @@ else:
 ```
 
 This mechanism ensures that **low-quality or failed runs are not saved**, while all runs’ logs remain recorded.
+
+#### `self.final_experiment_log`
+A string summarizing the outcome, key observations, or additional notes from your experiment.  
+It will be **automatically saved** in the `experiment_log` folder.
+
+Logs are stored in text files named according to the quality level, such as:  
+- `experiments_log_quality_0.txt`  
+- `experiments_log_quality_1.txt`  
+- `experiments_log_quality_2.txt`  
+
+This organization allows you to **easily review past experiments** grouped by their quality level.
+
+
+#### `self.final_experiment_data`
+A dictionary containing the results, metrics, or artifacts of your experiment.  
+It will be **automatically saved** (via pickle) in the `experiment_data` folder.
+
+
 
 ---
 
